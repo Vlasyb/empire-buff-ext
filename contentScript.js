@@ -85,7 +85,6 @@ function applyDot975Multiplier() {
 			skinName = skinName.replace(/★/, function (match) {
 				return ""
 			})
-			alert(skinName)
 			console.log()
 			link = `<a href="https://buff.163.com/market/csgo#tab=selling&page_num=1&search=${skinName}">  |Buff|</a>`
 			element3.innerHTML += `  ${link}`
