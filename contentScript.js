@@ -53,14 +53,15 @@ function applyDot975Multiplier() {
 		checkNumber = checkNumber * 0.613
 		checkNumber = checkNumber.toFixed(3)
 		var originalContent = element2.innerHTML
+		// if(originalContent)
 		var insertedContent =
 			originalContent.slice(0, 1220) + "Before: " + originalContent.slice(1220)
 
 		element2.innerHTML = insertedContent
 		element2.innerHTML += `Taxed: ${checkNumber.toString()}`
-		element2.style.backgroundColor = "yellow"
+		// element2.style.backgroundColor = "yellow"
 		element2.style.fontWeight = "bold"
-		element2.style.color = "black"
+		element2.style.color = "white"
 		element2.style.fontSize = "14px"
 	})
 
@@ -80,6 +81,9 @@ function applyDot975Multiplier() {
 			result = resultStart + " " + resultEnd
 			var skinName = result.replace(/ /, function (match) {
 				return "%20"
+			})
+			skinName = skinName.replace(/★/, function (match) {
+				return ""
 			})
 			console.log()
 			link = `<a href="https://buff.163.com/market/csgo#tab=selling&page_num=1&search=${skinName}">Buff</a>`
