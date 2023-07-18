@@ -4,9 +4,17 @@ window.setInterval(applyDot975Multiplier, 1000)
 
 // Function to apply the pink background
 function applyDot975Multiplier() {
-	extensionName = document.querySelector(".mb-lg.text-light-1")
-	extensionName.innerText =
-		"Tanya Granik Is On My Dick :) - Extension Activated"
+	let empireHeaderElement = document.querySelector(".mb-lg.text-light-1")
+	if (empireHeaderElement) {
+		empireHeaderElement.className = "Changed mb-lg text-light-1"
+		empireHeaderElement.innerText = "Aba Toda Extension (c) Abu Blesy"
+	}
+	let buffAvatarNameElement = document.querySelector("#navbar-user-name")
+	if (buffAvatarNameElement) {
+		buffAvatarNameElement.innerText = "обезьяна"
+		buffAvatarNameElement.style.fontSize = "22px"
+	}
+
 	// Find all buffPrices with the specified class name
 	const buffPrices = document.querySelectorAll(".c_Gray.f_12px")
 
