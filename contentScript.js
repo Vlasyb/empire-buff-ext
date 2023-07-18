@@ -73,12 +73,36 @@ function applyDot975Multiplier() {
 	const conditions = document.querySelectorAll(
 		".item__quality.rounded-t.px-2.text-xxxs.font-bold.uppercase"
 	)
+	const percentages = document.querySelectorAll(".link.text-small.font-normal")
+	// const itemCards = document.querySelectorAll(
+	// 	".item.item--instant-withdraw.item--trading.item--730"
+	// )
+	//Each ItemCard - 1-skin pic name condition.2-Prices and percentages 3-more info
+	const itemCards = document.querySelectorAll(".item__inner.cursor-pointer")
 
 	itemNames.forEach(function (itemName, index) {
 		//changed from skin to item //changed skinName -> itemName
 		try {
 			if (index > skinNames.length - 1) {
 				return
+			}
+			let itemCard = itemCards[index]
+			itemCard.className = "Changed item__inner cursor-pointer"
+			let centerCardOuter = itemCard.querySelector(".px-1.pb-1")
+			let centerCardInner = centerCardOuter.querySelector(
+				".-mb-1.-ml-1.flex.flex-wrap.items-center.justify-between"
+			)
+			let percentage = centerCardInner.querySelector(".ml-1.flex-1.pb-03")
+
+			if (percentage) {
+				if (percentage.innerText.includes("off")) {
+					let percentageInt = +percentage.innerText.split("%")[0]
+					console.log(percentageInt)
+					if (percentageInt > 8) {
+						percentage.style.backgroundColor = "green"
+						// percentage.style.color = "white" // doesnt work for some reason
+					}
+				}
 			}
 
 			itemName.className = "Changed"
@@ -87,7 +111,6 @@ function applyDot975Multiplier() {
 				"Changed rounded-t px-2 text-xxxs font-bold uppercase"
 			let conditionFull = conditions[index].innerText
 			let condition = conditionFull.split("|")[0]
-			console.log(condition)
 			let skinNameStr = skinNames[index].innerText
 			var skinNameClean = skinNameStr.trim()
 			let itemNameStr = itemName.innerText
