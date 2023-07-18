@@ -25,7 +25,12 @@ function applyDot975Multiplier() {
 
 		buffPrice.className = "Changed"
 		let buffPriceStr = buffPrice.innerText
-		let buffPriceInt = +buffPriceStr.substring(3, buffPriceStr.length - 1)
+		let buffPriceInt = 0
+		if (buffPriceStr.includes("(")) {
+			buffPriceInt = +buffPriceStr.substring(3, buffPriceStr.length - 1)
+		} else {
+			buffPriceInt = +buffPriceStr.substring(2, buffPriceStr.length - 1)
+		}
 		console.log(buffPriceInt)
 		let buffPriceOriginalInt = buffPriceInt
 		try {
