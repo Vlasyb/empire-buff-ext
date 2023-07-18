@@ -35,13 +35,13 @@ function applyDot975Multiplier() {
 
 		element.innerHTML = resNum.toString()
 	})
-	const elements2 = document.querySelectorAll(
+	const pricesInCoins = document.querySelectorAll(
 		"span.font-numeric.flex.items-center.justify-center.text-small.font-bold.text-light-grey-1"
 	)
 
-	elements2.forEach(function (element2) {
-		element2.className = "Changed"
-		let content = element2.innerHTML
+	pricesInCoins.forEach(function (itemPriceInCoins) {
+		itemPriceInCoins.className = "Changed"
+		let content = itemPriceInCoins.innerHTML
 		var start_index = content.lastIndexOf(">") - 5 // Find the index of the second-to-last '>'
 		var end_index = content.lastIndexOf(" ") // Find the index of the last '<'
 
@@ -50,48 +50,66 @@ function applyDot975Multiplier() {
 			return ""
 		})
 		let checkNumber = +modifiedResult
-		checkNumber = checkNumber * 0.613
+		checkNumber = checkNumber * 0.6134
 		checkNumber = checkNumber.toFixed(3)
-		var originalContent = element2.innerHTML
+		var originalContent = itemPriceInCoins.innerHTML
 		// if(originalContent)
 		var insertedContent =
 			originalContent.slice(0, 1220) + "Before: " + originalContent.slice(1220)
 
-		element2.innerHTML = insertedContent
-		element2.innerHTML += `Taxed: ${checkNumber.toString()}`
-		// element2.style.backgroundColor = "yellow"
-		element2.style.fontWeight = "bold"
-		element2.style.color = "white"
-		element2.style.fontSize = "14px"
+		itemPriceInCoins.innerHTML = insertedContent
+		itemPriceInCoins.innerHTML += `Taxed: ${checkNumber.toString()}`
+		// itemPriceInCoins.style.backgroundColor = "yellow"
+		itemPriceInCoins.style.fontWeight = "bold"
+		itemPriceInCoins.style.color = "white"
+		itemPriceInCoins.style.fontSize = "14px"
 	})
 
-	const elements3 = document.querySelectorAll(
+	const skinNames = document.querySelectorAll(
 		"div.item__name.text-xs.font-bold"
 	)
-	const elements4 = document.querySelectorAll("div.mb-02.text-xxxs")
+	const itemNames = document.querySelectorAll("div.mb-02.text-xxxs")
+	// const
+	const conditions = document.querySelectorAll(
+		".item__quality.rounded-t.px-2.text-xxxs.font-bold.uppercase"
+	)
 
-	elements3.forEach(function (element3, index) {
+	itemNames.forEach(function (itemName, index) {
+		//changed from skin to item //changed skinName -> itemName
 		try {
-			element3.className = "Changed"
-			elements4[index].className = "Changed"
-			let contentStart = elements4[index].innerText
-			var resultStart = contentStart.trim()
-			let contentEnd = element3.innerText
-			var resultEnd = contentEnd.trim()
-			result = resultStart + " " + resultEnd
-			var skinName = result.replace(/ /, function (match) {
+			if (index > skinNames.length - 1) {
+				return
+			}
+
+			itemName.className = "Changed"
+			skinNames[index].className = "Changed"
+			conditions[index].className =
+				"Changed rounded-t px-2 text-xxxs font-bold uppercase"
+			let conditionFull = conditions[index].innerText
+			let condition = conditionFull.split("|")[0]
+			console.log(condition)
+			let skinNameStr = skinNames[index].innerText
+			var skinNameClean = skinNameStr.trim()
+			let itemNameStr = itemName.innerText
+			var itemNameClean = itemNameStr.trim()
+			let result = itemNameClean + " " + skinNameClean + " " + condition
+			if (result.includes("-")) {
+				result = result.split("-")[0].trim()
+				result = result + " " + condition
+			}
+			var fullSkinInfo = result.replace(/ /, function (match) {
 				return "%20"
 			})
-			skinName = skinName.replace(/★/, function (match) {
+			fullSkinInfo = fullSkinInfo.replace(/★/, function (match) {
 				return ""
 			})
 			console.log()
-			link = `<a href="https://buff.163.com/market/csgo#tab=selling&page_num=1&search=${skinName}">  |Buff|</a>`
-			element3.innerHTML += `  ${link}`
-			element3.color = "white"
-			// element3.style.backgroundColor = "yellow"
-			element3.style.fontWeight = "bold"
-			element3.style.fontSize = "14px"
+			link = `<a href="https://buff.163.com/market/csgo#tab=selling&page_num=1&search=${fullSkinInfo}">  |Buff|</a>`
+			itemName.innerHTML += `  ${link}`
+			itemName.color = "white"
+			// itemName.style.backgroundColor = "yellow"
+			itemName.style.fontWeight = "bold"
+			itemName.style.fontSize = "14px"
 		} catch (err) {
 			console.log("err ", err)
 		}
