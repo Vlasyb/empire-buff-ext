@@ -99,7 +99,7 @@ function applyDot975Multiplier() {
 					let percentageInt = +percentage.innerText.split("%")[0]
 					console.log(percentageInt)
 					if (percentageInt > 8) {
-						percentage.style.backgroundColor = "green"
+						percentage.style.backgroundColor = "yellow"
 						// percentage.style.color = "white" // doesnt work for some reason
 					}
 				}
