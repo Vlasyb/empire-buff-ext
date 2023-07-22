@@ -124,13 +124,12 @@ function applyDot975Multiplier() {
 			let condition = conditionFull.split("|")[0]
 			let skinNameStr = skinNames[index].innerText
 			var skinNameClean = skinNameStr.trim()
+			if (skinNameClean.includes("-")) {
+				skinNameClean = skinNameClean.split("-")[0].trim()
+			}
 			let itemNameStr = itemName.innerText
 			var itemNameClean = itemNameStr.trim()
 			let result = itemNameClean + " " + skinNameClean + " " + condition
-			if (result.includes("-")) {
-				result = result.split("-")[0].trim()
-				result = result + " " + condition
-			}
 			var fullSkinInfo = result.replace(/ /, function (match) {
 				return "%20"
 			})
