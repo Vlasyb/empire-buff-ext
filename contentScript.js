@@ -52,13 +52,17 @@ function applyDot975Multiplier() {
 	pricesInCoins.forEach(function (itemPriceInCoins) {
 		itemPriceInCoins.className = "Changed"
 		let content = itemPriceInCoins.innerHTML
-		var start_index = content.lastIndexOf(">") - 5 // Find the index of the second-to-last '>'
-		var end_index = content.lastIndexOf(" ") // Find the index of the last '<'
+		console.log("content:", content)
+		// var start_index = content.lastIndexOf(">") - 5 // Find the index of the second-to-last '>'
+		// var end_index = content.lastIndexOf(" ") // Find the index of the last '<'
+		var start_index = content.lastIndexOf(">") - 12
+		var end_index = content.lastIndexOf('"') + 2
 
 		var result = content.substring(start_index, end_index).trim()
 		var modifiedResult = result.replace(/,/, function (match) {
 			return ""
 		})
+		console.log(modifiedResult)
 		let checkNumber = +modifiedResult
 		checkNumber = checkNumber * 0.6134
 		checkNumber = checkNumber.toFixed(3)
