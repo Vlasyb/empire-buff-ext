@@ -48,7 +48,8 @@ function applyDot975Multiplier() {
 
 	const pricesInCoins = document.querySelectorAll(
 		// "span.font-numeric.flex.items-center.justify-center.text-small.font-bold.text-light-grey-1"
-		"span.font-numeric.flex.items-center.justify-center.text-large.font-bold"
+		"span.font-numeric.inline-flex.items-baseline.justify-center.text-large.font-bold"
+		//font-numeric.inline-flex.items-baseline.justify-center.text-large.font-bold
 	)
 
 	pricesInCoins.forEach(function (itemPriceInCoins) {
@@ -83,7 +84,7 @@ function applyDot975Multiplier() {
 		"div.mb-sm > p.size-small:not([class*='flex'])"
 	)
 	const skinNames = document.querySelectorAll(
-		"div.flex.items-center.justify-between > p.size-medium.font-bold.text-light-1"
+		"div.justify-between > p.size-medium.font-bold.text-light-1"
 	)
 	// console.log(itemNames)
 	const conditions = document.querySelectorAll(
@@ -96,7 +97,7 @@ function applyDot975Multiplier() {
 	// )
 	//Each ItemCard - 1-skin pic name condition.2-Prices and percentages 3-more info
 	const itemCards = document.querySelectorAll(".item__inner.cursor-pointer")
-
+	console.log(skinNames)
 	itemNames.forEach(function (itemName, index) {
 		//changed from skin to item //changed skinName -> itemName
 		try {
@@ -138,7 +139,6 @@ function applyDot975Multiplier() {
 			var itemNameClean = itemNameStr.trim()
 
 			let result = itemNameClean + " " + skinNameClean + " " + condition
-			console.log(result)
 			var fullSkinInfo = result.replace(/ /, function (match) {
 				return "%20"
 			})
