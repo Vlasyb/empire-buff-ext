@@ -4,6 +4,7 @@ window.setInterval(applyDot975Multiplier, 1000)
 
 // Function to apply the pink background
 function applyDot975Multiplier() {
+	let counter = 0
 	let empireHeaderElement = document.querySelector(".mb-lg.text-light-1")
 	if (empireHeaderElement) {
 		empireHeaderElement.className = "Changed mb-lg text-light-1"
@@ -46,13 +47,13 @@ function applyDot975Multiplier() {
 	})
 
 	const pricesInCoins = document.querySelectorAll(
-		"span.font-numeric.flex.items-center.justify-center.text-small.font-bold.text-light-grey-1"
+		// "span.font-numeric.flex.items-center.justify-center.text-small.font-bold.text-light-grey-1"
+		"span.font-numeric.flex.items-center.justify-center.text-large.font-bold"
 	)
 
 	pricesInCoins.forEach(function (itemPriceInCoins) {
 		itemPriceInCoins.className = "Changed"
 		let content = itemPriceInCoins.innerHTML
-		console.log("content:", content)
 		// var start_index = content.lastIndexOf(">") - 5 // Find the index of the second-to-last '>'
 		// var end_index = content.lastIndexOf(" ") // Find the index of the last '<'
 		var start_index = content.lastIndexOf(">") - 12
@@ -62,7 +63,6 @@ function applyDot975Multiplier() {
 		var modifiedResult = result.replace(/,/, function (match) {
 			return ""
 		})
-		console.log(modifiedResult)
 		let checkNumber = +modifiedResult
 		checkNumber = checkNumber * 0.6134
 		checkNumber = checkNumber.toFixed(3)
@@ -72,21 +72,24 @@ function applyDot975Multiplier() {
 			originalContent.slice(0, 1220) + "Before: " + originalContent.slice(1220)
 
 		itemPriceInCoins.innerHTML = insertedContent
-		itemPriceInCoins.innerHTML += `Taxed: ${checkNumber.toString()}`
+		itemPriceInCoins.innerHTML += `${checkNumber.toString()}`
 		// itemPriceInCoins.style.backgroundColor = "yellow"
 		itemPriceInCoins.style.fontWeight = "bold"
 		itemPriceInCoins.style.color = "white"
-		itemPriceInCoins.style.fontSize = "14px"
+		itemPriceInCoins.style.fontSize = "15px"
 	})
-
+	console.log("skin names:")
+	const itemNames = document.querySelectorAll(
+		"div.mb-sm > p.size-small:not([class*='flex'])"
+	)
 	const skinNames = document.querySelectorAll(
-		"div.item__name.text-xs.font-bold"
+		"div.flex.items-center.justify-between > p.size-medium.font-bold.text-light-1"
 	)
-	const itemNames = document.querySelectorAll("div.mb-02.text-xxxs")
-	// const
+	// console.log(itemNames)
 	const conditions = document.querySelectorAll(
-		".item__quality.rounded-t.px-2.text-xxxs.font-bold.uppercase"
+		".size-small.font-bold.uppercase"
 	)
+	// console.log(conditions)
 	const percentages = document.querySelectorAll(".link.text-small.font-normal")
 	// const itemCards = document.querySelectorAll(
 	// 	".item.item--instant-withdraw.item--trading.item--730"
@@ -100,24 +103,24 @@ function applyDot975Multiplier() {
 			if (index > skinNames.length - 1) {
 				return
 			}
-			let itemCard = itemCards[index]
-			itemCard.className = "Changed item__inner cursor-pointer"
-			let centerCardOuter = itemCard.querySelector(".px-1.pb-1")
-			let centerCardInner = centerCardOuter.querySelector(
-				".-mb-1.-ml-1.flex.flex-wrap.items-center.justify-between"
-			)
-			let percentage = centerCardInner.querySelector(".ml-1.flex-1.pb-03")
+			// let itemCard = itemCards[index]
+			// itemCard.className = "Changed item__inner cursor-pointer"
+			// let centerCardOuter = itemCard.querySelector(".px-1.pb-1")
+			// let centerCardInner = centerCardOuter.querySelector(
+			// 	".-mb-1.-ml-1.flex.flex-wrap.items-center.justify-between"
+			// )
+			// let percentage = centerCardInner.querySelector(".ml-1.flex-1.pb-03")
 
-			if (percentage) {
-				if (percentage.innerText.includes("off")) {
-					let percentageInt = +percentage.innerText.split("%")[0]
-					console.log(percentageInt)
-					if (percentageInt > 8) {
-						percentage.style.backgroundColor = "yellow"
-						// percentage.style.color = "white" // doesnt work for some reason
-					}
-				}
-			}
+			// if (percentage) {
+			// 	if (percentage.innerText.includes("off")) {
+			// 		let percentageInt = +percentage.innerText.split("%")[0]
+			// 		// console.log(percentageInt)
+			// 		if (percentageInt > 8) {
+			// 			percentage.style.backgroundColor = "yellow"
+			// 			// percentage.style.color = "white" // doesnt work for some reason
+			// 		}
+			// 	}
+			// }
 
 			itemName.className = "Changed"
 			skinNames[index].className = "Changed"
@@ -133,14 +136,15 @@ function applyDot975Multiplier() {
 			}
 			let itemNameStr = itemName.innerText
 			var itemNameClean = itemNameStr.trim()
+
 			let result = itemNameClean + " " + skinNameClean + " " + condition
+			console.log(result)
 			var fullSkinInfo = result.replace(/ /, function (match) {
 				return "%20"
 			})
 			fullSkinInfo = fullSkinInfo.replace(/★/, function (match) {
 				return ""
 			})
-			console.log()
 			link = `<a href="https://buff.163.com/market/csgo#tab=selling&page_num=1&search=${fullSkinInfo}">  |Buff|</a>`
 			itemName.innerHTML = `${link}  ` + itemName.innerHTML
 			if (itemName.innerText.includes("StatTrak")) {
