@@ -79,14 +79,16 @@ function applyDot975Multiplier() {
 		itemPriceInCoins.style.color = "white"
 		itemPriceInCoins.style.fontSize = "15px"
 	})
-	console.log("skin names:")
+	// console.log("skin names:")
 	const itemNames = document.querySelectorAll(
-		"div.mb-sm > p.size-small:not([class*='flex'])"
+		"div.relative.mb-sm.flex.h-full.justify-between > div > p.size-small:not([class*='flex'])"
 	)
+	// "div.mb-sm > p.size-small:not([class*='flex'])"
 	const skinNames = document.querySelectorAll(
-		"div.justify-between > p.size-medium.font-bold.text-light-1"
+		"div.relative.mb-sm.flex.h-full.justify-between >div > p.size-medium.font-bold.text-light-1"
 	)
 	// console.log(itemNames)
+	console.log(skinNames)
 	const conditions = document.querySelectorAll(
 		".size-small.font-bold.uppercase"
 	)
@@ -104,6 +106,7 @@ function applyDot975Multiplier() {
 			if (index > skinNames.length - 1) {
 				return
 			}
+			// console.log(itemName)
 			// let itemCard = itemCards[index]
 			// itemCard.className = "Changed item__inner cursor-pointer"
 			// let centerCardOuter = itemCard.querySelector(".px-1.pb-1")
