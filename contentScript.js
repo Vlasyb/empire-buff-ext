@@ -32,7 +32,7 @@ function applyDot975Multiplier() {
 		} else {
 			buffPriceInt = +buffPriceStr.substring(2, buffPriceStr.length - 1)
 		}
-		console.log(buffPriceInt)
+		// console.log(buffPriceInt)
 		let buffPriceOriginalInt = buffPriceInt
 		try {
 			buffPriceInt = buffPriceInt * 0.975
@@ -88,7 +88,7 @@ function applyDot975Multiplier() {
 		"div.relative.mb-sm.flex.h-full.justify-between >div > p.size-medium.font-bold.text-light-1"
 	)
 	// console.log(itemNames)
-	console.log(skinNames)
+	// console.log(skinNames)
 	const conditions = document.querySelectorAll(
 		".size-small.font-bold.uppercase"
 	)
@@ -99,7 +99,7 @@ function applyDot975Multiplier() {
 	// )
 	//Each ItemCard - 1-skin pic name condition.2-Prices and percentages 3-more info
 	const itemCards = document.querySelectorAll(".item__inner.cursor-pointer")
-	console.log(skinNames)
+	// console.log(skinNames)
 	itemNames.forEach(function (itemName, index) {
 		//changed from skin to item //changed skinName -> itemName
 		try {
